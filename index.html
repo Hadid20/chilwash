@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+    <link rel="stylesheet"
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+    <style>
+        *,
+        body,
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="py-3">
+
+
+        <div class="antialiased bg-gray-100 dark-mode:bg-gray-900">
+            <div class="w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+                <div x-data="{ open: true }"
+                    class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                    <div class="flex flex-row items-center justify-between p-4">
+                        <a href="#"
+                            class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">Chilwash
+                        </a>
+                        <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
+                            @click="open = !open">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                                <path x-show="!open" fill-rule="evenodd"
+                                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                    clip-rule="evenodd"></path>
+                                <path x-show="open" fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <nav :class="{'flex': open, 'hidden': !open}"
+                        class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
+                        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                            href="#">Beranda</a>
+                        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                            href="#about">Tentang kami</a>
+                        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                            href="#Service">Service</a>
+
+                        <a class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                            href="#order">Order</a>
+                        <!-- <div @click.away="open = false" class="relative" x-data="{ open: false }">
+							<button @click="open = !open"
+								class="flex flex-row text-gray-900 bg-gray-200 items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+								<span>More</span>
+								<svg fill="currentColor" viewBox="0 0 20 20"
+									:class="{'rotate-180': open, 'rotate-0': !open}"
+									class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+									<path fill-rule="evenodd"
+										d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+										clip-rule="evenodd"></path>
+								</svg>
+							</button>
+							<div x-show="open" x-transition:enter="transition ease-out duration-100"
+								x-transition:enter-start="transform opacity-0 scale-95"
+								x-transition:enter-end="transform opacity-100 scale-100"
+								x-transition:leave="transition ease-in duration-75"
+								x-transition:leave-start="transform opacity-100 scale-100"
+								x-transition:leave-end="transform opacity-0 scale-95"
+								class="absolute right-0 w-full md:max-w-screen-sm md:w-screen mt-2 origin-top-right">
+								<div class="px-2 pt-2 pb-4 bg-white rounded-md shadow-lg dark-mode:bg-gray-700">
+									<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+										<a class="flex flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+											href="#">
+											<div class="bg-teal-500 text-white rounded-lg p-3">
+												<svg fill="none" stroke="currentColor" stroke-linecap="round"
+													stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+													class="md:h-6 md:w-6 h-4 w-4">
+													<path
+														d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+													</path>
+												</svg>
+											</div>
+											<div class="ml-3">
+												<a href="/admin.php" class="font-semibold">Admin</a>
+												<p class="text-sm">Easy customization</p>
+											</div>
+										</a>
+
+										<a class="flex flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+											href="#">
+											<div class="bg-teal-500 text-white rounded-lg p-3">
+												<svg fill="none" stroke="currentColor" stroke-linecap="round"
+													stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+													class="md:h-6 md:w-6 h-4 w-4">
+													<path
+														d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+													</path>
+												</svg>
+											</div>
+											<div class="ml-3">
+												<p class="font-semibold">Comments</p>
+												<p class="text-sm">Check your latest comments</p>
+											</div>
+										</a>
+
+										<a class="flex flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+											href="#">
+											<div class="bg-teal-500 text-white rounded-lg p-3">
+												<svg fill="none" stroke="currentColor" stroke-linecap="round"
+													stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+													class="md:h-6 md:w-6 h-4 w-4">
+													<path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+													<path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+												</svg>
+											</div>
+											<div class="ml-3">
+												<p class="font-semibold">Analytics</p>
+												<p class="text-sm">Take a look at your statistics</p>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div> -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- component -->
+    <section class="pt-24 bg-white">
+        <div class="px-12 mx-auto max-w-7xl">
+            <div class="w-full mx-auto text-left md:w-11/12 xl:w-9/12 md:text-center">
+                <h1
+                    class="mb-8 text-4xl font-extrabold leading-none tracking-normal text-gray-900 md:text-6xl md:tracking-tight">
+                    <span>Cilwash</span> <span
+                        class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 lg:inline">Profesional
+                        Laundry Service</span> <span>No 1 di Indonesia</span>
+                </h1>
+                <p class="px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24">
+                    <span
+                        class="font-bold block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 lg:inline">Stop
+                        Mencuci Sendiri! </span>
+                    ,Maksimalkan waktu berharga Anda, biarkan Tim Profesional kami yang mencuci untuk Anda!
+                </p>
+                <div class="mb-4 space-x-0 md:space-x-2 md:mb-8">
+                    <a href="#order"
+                        class="inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg text-white bg-green-400 rounded-2xl sm:w-auto sm:mb-0">
+                        Order Now
+                        <svg class="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#_"
+                        class="inline-flex items-center justify-center w-full px-6 py-3 mb-2 text-lg bg-gray-100 rounded-2xl sm:w-auto sm:mb-0">
+                        Learn More
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+    </section>
+
+    <br>
+    <div class="flex justify-center animate-bounce my-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+            class="bi bi-arrow-down-circle text-green-400" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
+        </svg>
+    </div>
+    <br>
+    <div id="about" class="py-10">
+        <div class="text-center">
+            <h1
+                class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 lg:inline text-5xl font-bold text-center">
+                Tentang Kami</h1>
+
+        </div>
+    </div>
+    <!-- component -->
+    <div class="px-16 bg-white pb-28">
+        <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+            <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12">
+                <div class="md:5/12 lg:w-5/12">
+                    <img src="https://d39wptbp5at4nd.cloudfront.net/media/74140_medium_dibutuhkan-karyawan-laundry-untuk-shift-malam-di-laundbee-laundry.jpg"
+                        class="rounded-lg shadow" alt="image" loading="lazy" width="" height="">
+                    <!-- <img src="https://tailus.io/sources/blocks/left-image/preview/images/startup.png" alt="image"
+						loading="lazy" width="" height=""> -->
+                </div>
+                <div class="md:7/12 lg:w-6/12">
+                    <h2 class="text-2xl text-gray-900 font-bold md:text-4xl">Cilwash Profesional Laundry Service No 1 di
+                        Indonesia</h2>
+                    <p class="mt-6 text-gray-600">Cilwash adalah layanan laundry kiloan dan satuan. Kami adalah tim
+                        profesional yang selalu mengutamakan kualitas cucian & pelayanan dengan prinsip bersih, rapi,
+                        wangi, higienis & tepat waktu. </p>
+                    <p class="mt-4 text-gray-600">Cilwash menerima laundry kiloan untuk perusahaan, misal kantor, rumah
+                        sakit, asrama, pesantren, sekolah, perusahaan konveksi atau perusahaan-perusahaan semisal.
+                        silakan hubungi kami untuk penawaran harga khusus dengan kontrak minimal 3 bulan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- component -->
+    <div class="pb-28">
+
+        <div class="text-center mt-10">
+            <h1
+                class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 lg:inline font-bold text-4xl ">
+                Mengapa Pilih Kami ? </h1>
+        </div>
+        <div class="flex flex-wrap items-center justify-center">
+
+            <div style="height: 22rem; width:15rem;"
+                class="flex-shrink-0 m-6  relative overflow-hidden bg-orange-500 rounded-lg shadow-lg">
+                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                    style="transform: scale(1.5); opacity: 0.1;">
+                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                        fill="white" />
+                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white" />
+                </svg>
+                <div class="relative pt-10 px-10 flex items-center justify-center">
+                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                        style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;">
+                    </div>
+                    <img class="relative w-40"
+                        src="https://2.bp.blogspot.com/-DPT1fQH0hpM/WdEsPLO5J7I/AAAAAAAAB5s/a7mwRkUK3BYxZqXJd0o4Yg_BHcHHE4Z3gCLcBGAs/s1600/laundry-kiloan.png"
+                        alt="">
+                    <!-- <img class="relative w-40"
+						src="https://user-images.githubusercontent.com/2805249/64069899-8bdaa180-cc97-11e9-9b19-1a9e1a254c18.png"
+						alt=""> -->
+                </div>
+                <div class="relative text-white px-6 pb-6 mt-20">
+
+                    <div class="flex justify-between">
+                        <span class="block font-semibold text-xl text-center">Cuci Kiloan Berkualitas Tinggi</span>
+
+                    </div>
+                </div>
+            </div>
+            <div style="height: 22rem;width:15rem;"
+                class="flex-shrink-0 m-6  relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
+                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                    style="transform: scale(1.5); opacity: 0.1;">
+                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                        fill="white" />
+                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white" />
+                </svg>
+                <div class="relative pt-10 px-10 flex items-center justify-center">
+                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                        style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;">
+                    </div>
+                    <img class="relative w-40"
+                        src="https://png.pngtree.com/png-clipart/20220509/original/pngtree-online-delivery-ordering-service-and-delivery-straight-to-your-hand-quickly-png-image_7691150.png"
+                        alt="">
+                </div>
+                <div class="relative text-white px-6 pb-6 mt-6">
+                    <div class="flex justify-between">
+                        <span class="block font-semibold text-xl text-center">Layanan Penjemputan dan Pengantaran</span>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 22rem;width:15rem;"
+                class="flex-shrink-0 m-6  relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
+                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                    style="transform: scale(1.5); opacity: 0.1;">
+                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                        fill="white" />
+                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white" />
+                </svg>
+                <div class="relative pt-10 px-10 flex items-center justify-center">
+                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                        style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;">
+                    </div>
+                    <img class="relative w-40"
+                        src="https://png.pngtree.com/png-clipart/20230528/original/pngtree-man-holding-phone-standing-png-image_9172574.png"
+                        alt="">
+                </div>
+                <div class="relative text-white px-6 pb-6 mt-6">
+                    <div class="flex justify-between">
+                        <span class="block font-semibold text-xl text-center"> Pemesanan Online yang Mudah</span>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 22rem;width:15rem;"
+                class="flex-shrink-0 m-6  relative overflow-hidden bg-purple-500 rounded-lg max-w-xs shadow-lg">
+                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none"
+                    style="transform: scale(1.5); opacity: 0.1;">
+                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)"
+                        fill="white" />
+                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white" />
+                </svg>
+                <div class="relative pt-10 px-10 flex items-center justify-center">
+                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+                        style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;">
+                    </div>
+                    <img class="relative w-40"
+                        src="https://th.bing.com/th/id/OIP.eHT4mLkT6tBDL83fYFVwdAHaJD?w=841&h=1028&rs=1&pid=ImgDetMain"
+                        alt="">
+                </div>
+                <div class="relative text-white px-6 pb-6 mt-6">
+                    <div class="flex justify-between">
+                        <span class="block font-semibold text-xl text-center">Dry Cleaning Profesional</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br class="my-5">
+        <br class="my-5">
+
+
+    </div>
+    <div id="Service" class="pb-28">
+        <!-- component -->
+        <!-- Created By Joker Banny -->
+        <div class="text-center my-5">
+            <h1
+                class="block w-full py-2 text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 lg:inline text-5xl font-bold text-center">
+                Service</h1>
+            <br class="my-5">
+
+            <div class="relative w-full  flex m-auto gap-10 mt-5 justify-center px-16 ">
+
+                <img class="w-96 rounded-md"
+                    src="https://i1.wp.com/startuptipsdaily.com/wp-content/uploads/2016/11/dry-cleaning-and-laundry-service-business.jpg?fit=1536%2C1024&ssl=1"
+                    alt="">
+
+                <div class=" relative space-y-4">
+                    <div class="p-5  shadow-lg rounded-lg flex items-center justify-between space-x-8">
+                        <!-- <img src="asset/tshirt.png" alt=""> -->
+                        <div class="flex-1 flex justify-between items-center gap-5">
+                            <div class="p-2 w-48 bg-gray-300 rounded flex flex-col 	">
+                                <center>
+                                    <svg class="h-8 w-8 text-red-500" width="24" height="24" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                        <path
+                                            d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0" />
+                                    </svg>
+                                    kaos
+                                </center>
+                            </div>
+                            <div class="p-2 w-48 bg-purple-300 rounded flex flex-col 	">
+                                <center>
+                                    <img src="https://cdn2.iconfinder.com/data/icons/clothes-shoes-vol-2/64/men-suit-512.png"
+                                        width="30px" alt="">
+                                    Jas
+                                </center>
+                                <!-- <div class="w-48 p-2 rounded-lg bg-purple-300">Jas</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5  shadow-lg rounded-lg flex items-center justify-between space-x-8">
+                        <!-- <img src="img/gown.png" width="30px" alt=""> -->
+                        <div class="flex-1 flex justify-between items-center gap-5">
+                            <div class="p-2 w-48 bg-gray-300 rounded flex flex-col 	">
+                                <center>
+                                    <!-- <svg class="h-8 w-8 text-red-500" width="24" height="24" viewBox="0 0 24 24"
+                                                                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                                            stroke-linejoin="round">
+                                                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                                                            <path
+                                                                                d="M15 4l6 2v5h-3v8a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1v-8h-3v-5l6 -2a3 3 0 0 0 6 0" />
+                                                                        </svg> -->
+                                    <img src="img/gown.png" width="30px" alt="">
+                                    Gaun
+                                </center>
+                            </div>
+                            <div class="p-2 w-48 bg-purple-300 rounded flex flex-col 	">
+                                <center>
+                                    <img src="img/blazer.png" width="30px" alt="">
+                                    Blezer
+                                </center>
+                                <!-- <div class="w-48 p-2 rounded-lg bg-purple-300">Jas</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5  shadow-lg rounded-lg flex items-center justify-between space-x-8">
+                        <!-- <img src="asset/tshirt.png" alt=""> -->
+                        <div class="flex-1 flex justify-between items-center gap-5">
+                            <div class="p-2 w-48 bg-gray-300 rounded flex flex-col 	">
+                                <center>
+                                    <img src="img/cloth.png" width="30px" alt="">
+                                    Kemeja
+                                </center>
+                            </div>
+                            <div class="p-2 w-48 bg-purple-300 rounded flex flex-col 	">
+                                <center>
+                                    <img src="img/textile.png" width="30px" alt="">
+                                    Bad Cover
+                                </center>
+                                <!-- <div class="w-48 p-2 rounded-lg bg-purple-300">Jas</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-5  shadow-lg rounded-lg flex items-center justify-between space-x-8">
+                        <!-- <img src="asset/tshirt.png" alt=""> -->
+                        <div class="flex-1  items-center gap-5">
+                            <div class="p-2  bg-gray-300 rounded flex flex-col 	">
+                                <center>
+                                    Dan Lain Sebagainya
+                                </center>
+                            </div>
+
+                        </div </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="order">
+            <div class="mx-auto w-full py-10 px-24">
+                <div class="text-center pt-10">
+                    <h1
+                        class="text-5xl text-transparent bg-clip-text leading-12 bg-gradient-to-r from-green-400 to-purple-500 font-bold">
+                        Pick Up Now</h1>
+
+                    <p class="mt-3">Pesan Layanan Online kami Dengan pengisi form Di Sini:</p>
+                </div>
+
+                <form action="" class="mt-10">
+
+                    <!-- This is a working contact form. 
+         Get your free access key from: https://web3forms.com/  -->
+
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+                    <div class="grid gap-6 sm:grid-cols-2">
+                        <div class="relative z-0">
+                            <input type="text" name="name"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder=" " />
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your
+                                name</label>
+                        </div>
+                        <div class="relative z-0">
+                            <input type="text" name="name"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder=" " />
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">No
+                                Whatsapp</label>
+                        </div>
+                        <div class="relative z-0">
+                            <input type="date" name="name"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder=" " />
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Tanggal
+                            </label>
+                        </div>
+                        <div class="relative z-0">
+                            <input type="time" name="name"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder=" " />
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Waktu
+                            </label>
+                        </div>
+                        <div class="relative z-0">
+                            <input type="text" name="name"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder="" />
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">tipe
+                                laundry
+                            </label>
+                        </div>
+                        <!-- <div class="relative z-0">
+          <input type="text" name="email" class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0" placeholder=" " />
+          <label class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your email</label>
+        </div> -->
+                        <div class="relative z-0 col-span-2">
+                            <textarea name="message" rows="5"
+                                class="peer block w-full appearance-none border-0 border-b border-gray-500 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                placeholder=" "></textarea>
+                            <label
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-gray-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Your
+                                Alamat</label>
+                        </div>
+                    </div>
+                    <button type="submit"
+                        class="mt-5 rounded-md bg-black px-10 py-2 text-white leading-12 bg-gradient-to-r from-green-400 to-purple-500">Order
+                        Now</button>
+                    <button type="reset"
+                        class="mt-5 rounded-md bg-black px-10 py-2 text-white leading-12 bg-gradient-to-r from-green-400 to-purple-500">Reset</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="relative bg-blueGray-200 pt-8 pb-6">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap text-left lg:text-left">
+                    <div class="w-full lg:w-6/12 px-4">
+                        <h4 class="text-3xl fonat-semibold text-blueGray-700">Chilwash</h4>
+                        <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
+                            Profesional Laundry Service No 1 di Indonesia
+                        </h5>
+                        <div class="mt-6 lg:mb-0 mb-6">
+                            <button
+                                class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button">
+                                <i class="fab fa-twitter"></i></button><button
+                                class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button">
+                                <i class="fab fa-facebook-square"></i></button><button
+                                class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button">
+                                <i class="fab fa-dribbble"></i></button><button
+                                class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
+                                type="button">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-6/12 px-4">
+                        <div class="flex flex-wrap items-top mb-6">
+                            <div class="w-full lg:w-4/12 px-4 ml-auto">
+                                <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful
+                                    Links</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="#about">Tentang Kami</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="#service">Service</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="">Contect</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="">Order</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-full lg:w-4/12 px-4">
+                                <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Other
+                                    Resources</span>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT
+                                            License</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp;
+                                            Conditions</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="https://creative-tim.com/privacy?ref=njs-profile">Privacy Policy</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
+                                            href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="my-6 border-blueGray-300">
+                <div class="flex flex-wrap items-center md:justify-between justify-center">
+                    <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                        <div class="text-sm text-blueGray-500 font-semibold py-1">
+                            Copyright © <span id="get-current-year">2021</span><a
+                                href="https://www.creative-tim.com/product/notus-js"
+                                class="text-blueGray-500 hover:text-gray-800" target="_blank"> Notus JS by
+                                <a href="https://www.creative-tim.com?ref=njs-profile"
+                                    class="text-blueGray-500 hover:text-blueGray-800">Creative Tim</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>
